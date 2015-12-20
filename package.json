@@ -1,0 +1,20 @@
+{
+  "name": "voting-server",
+  "version": "1.0.0",
+  "description": "Implementing this. Ignore me: http://teropa.info/blog/2015/09/10/full-stack-redux-tutorial.html",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jegtnes/redux-tutorial-voting-server.git"
+  },
+  "keywords": [],
+  "author": "Alex Jegtnes <alex@jegtnes.co.uk> (http://jegtnes.co.uk)",
+  "license": "None",
+  "bugs": {
+    "url": "https://github.com/jegtnes/redux-tutorial-voting-server/issues"
+  },
+  "homepage": "https://github.com/jegtnes/redux-tutorial-voting-server#readme"
+}
