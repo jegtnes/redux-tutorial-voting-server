@@ -16,7 +16,8 @@ export function setEntries(state, entries) {
 // https://facebook.github.io/immutable-js/docs/#/Map/take
 // and the skip function returns the map, sans the first X amount of entries
 // https://facebook.github.io/immutable-js/docs/#/Map/skip
-// This is quite cool. I like it.
+// Merge ensures that the entries map that is returned is efficiently updated
+// with the changes that are happening here. This is quite cool. I like it.
 export function next(state) {
   const entries = state.get('entries');
   return state.merge({
