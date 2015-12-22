@@ -1,4 +1,4 @@
-import {List} from 'immutable';
+import {List, Map} from 'immutable';
 
 // sets an entries key in the state Map, and sets value of that to passed entries
 export function setEntries(state, entries) {
@@ -11,6 +11,16 @@ export function setEntries(state, entries) {
   return state.set('entries', List(entries));
 }
 
+// a function to move two map entries to a separate current vote key
+// The take function returns the first X amount of entries from a map:
+// https://facebook.github.io/immutable-js/docs/#/Map/take
+// and the skip function returns the map, sans the first X amount of entries
+// https://facebook.github.io/immutable-js/docs/#/Map/skip
+// This is quite cool. I like it.
 export function next(state) {
-  return state;
+  const entries = state.get('entries');
+  return state.merge({
+    vote: Map({pair: entries.take(2)}),
+    entries: entries.skip(2)
+  });
 }
