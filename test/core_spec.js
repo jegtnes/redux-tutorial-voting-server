@@ -48,9 +48,9 @@ describe('application logic', () => {
     it('creates a tally for the voted entry', () => {
       const state = Map({
         vote: Map({
-          pair: List.of('Trainspotting', '28 Days Later')
+          pair: List.of('Trainspotting', '28 Days Later'),
+          entries: List()
         }),
-        entries: List()
       });
 
       const nextState = vote(state, 'Trainspotting');
