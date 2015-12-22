@@ -25,3 +25,7 @@ export function next(state) {
     entries: entries.skip(2)
   });
 }
+
+export function vote(state) {
+  return state;
+}
