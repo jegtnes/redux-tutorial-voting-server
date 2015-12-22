@@ -26,6 +26,15 @@ export function next(state) {
   });
 }
 
+// a function to update a single entry in a vote with a vote tally
+// updateIn is a funny little Immutable concept.
+// The first parameter is the nested structure path we are updating
+// in this instance: e.g. vote -> tally -> Trainspotting
+// the second parameter is what we're setting this to if the value is missing
+// e.g. if Trainspotting hasn't received a vote until now.
+// the third parameter is what we're updating the value to
+// pretty fucking metal, though.
+// https://facebook.github.io/immutable-js/docs/#/Map/updateIn
 export function vote(state, entry) {
   return state.updateIn(
     ['vote', 'tally', entry],
