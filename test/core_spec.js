@@ -135,5 +135,24 @@ describe('application logic', () => {
         entries: List.of('127 Hours', 'Trainspotting', '28 Days Later')
       }));
     });
+
+    it ('calls the winner when there is only one film left', () => {
+      const state = Map({
+        vote: Map({
+          pair: List.of('Trainspotting', 'Sunshine'),
+          tally: Map({
+            Trainspotting: 5,
+            'Sunshine': 1
+          }),
+        }),
+        entries: List(),
+      });
+
+      const nextState = next(state);
+
+      expect(nextState).to.equal(Map({
+        winner: 'Trainspotting'
+      }));
+    });
   });
 })
