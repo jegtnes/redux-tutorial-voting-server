@@ -53,8 +53,8 @@ export function next(state) {
     state.get('entries')
          .concat(getWinners(state.get('vote')));
 
-   // Merge ensures that the entries map that is returned is efficiently updated
-   // with the changes that are happening here. This is quite cool.
+   // Merge ensures that the entries map that is returned is efficiently
+   // updated with the changes that are happening here. This is quite cool.
   return state.merge({
 
     // The take function returns the first X amount of entries from a map:
