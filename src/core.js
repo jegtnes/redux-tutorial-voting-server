@@ -9,32 +9,31 @@ function getWinners(vote) {
   // to the 0 and 1 indices of vote.get('pair'). This is not one variable
   // despite it looking like it. This is ES6 destructuring, which assigns
   // the first variable to the 0th index, the second variable to the 1st index
-  // etc. So a in this instance is the first film title, b is the second.
-  // Really quite cool, albeit unreadable at first.
+  // etc. Really quite cool, albeit unreadable at first.
   // This is called ES6 destructuring and has some more features & quirks:
   // https://hacks.mozilla.org/2015/05/es6-in-depth-destructuring/
-  const [a, b] = vote.get('pair');
+  const [firstFilm, secondFilm] = vote.get('pair');
 
   // getIn has a really encouraging name. get in!
   // what this little baby does is follow the path of keys or indices from its
   // roots and grabs the value from that. The second parameter is what you
   // get if nothing exists there. you retrieve something for nothing.
   // which is kinda cool. also capitalists' worst nightmare.
-  const aVotes = vote.getIn(['tally', a], 0);
-  const bVotes = vote.getIn(['tally', b], 0);
+  const firstFilmVotes = vote.getIn(['tally', firstFilm], 0);
+  const secondFilmVotes = vote.getIn(['tally', secondFilm], 0);
 
   // here we simply return an array with the title of the film with most votes
   // and if they're tied, return an array of both
   // this lets us concatenate them easily to a list later
   // delightfully simple and straight-forward. ES3 ✨
 
-  if (aVotes > bVotes) {
-    return [a];
+  if (firstFilmVotes > secondFilmVotes) {
+    return [firstFilm];
   }
-  else if (bVotes > aVotes) {
-    return [b];
+  else if (secondFilmVotes > firstFilmVotes) {
+    return [secondFilm];
   }
-  else return [a, b];
+  else return [firstFilm, secondFilm];
 }
 
 // sets an entries key in the state Map, and sets value of that to passed entries
