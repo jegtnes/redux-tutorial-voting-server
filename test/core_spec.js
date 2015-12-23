@@ -92,7 +92,7 @@ describe('application logic', () => {
       }))
     });
 
-    it('sends the winner back to the results for another vote later', () => {
+    it('sends the winner back to the entries for another vote later and discards the loser', () => {
       const state = Map({
         vote: Map({
           pair: List.of('Trainspotting', '28 Days Later'),
@@ -111,6 +111,28 @@ describe('application logic', () => {
           pair: List.of('Sunshine', 'Millions'),
         }),
         entries: List.of('127 Hours', 'Trainspotting')
+      }));
+    });
+
+    it('returns both films in a tied state back to the entries', () => {
+      const state = Map({
+        vote: Map({
+          pair: List.of('Trainspotting', '28 Days Later'),
+          tally: Map({
+            'Trainspotting': 5,
+            '28 Days Later': 5
+          }),
+        }),
+        entries: List.of('Sunshine', 'Millions', '127 Hours')
+      });
+
+      const nextState = next(state);
+
+      expect(nextState).to.equal(Map({
+        vote: Map({
+          pair: List.of('Sunshine', 'Millions')
+        }),
+        entries: List.of('127 Hours', 'Trainspotting', '28 Days Later')
       }));
     });
   });
