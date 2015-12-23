@@ -53,18 +53,33 @@ export function next(state) {
     state.get('entries')
          .concat(getWinners(state.get('vote')));
 
-   // Merge ensures that the entries map that is returned is efficiently
-   // updated with the changes that are happening here. This is quite cool.
-  return state.merge({
+  // If there is only one entry left in entries, we have a winner.
+  // We return the original state and not just a new map for reasons.
+  // I'm not clever enough to know exactly why all by myself, but the
+  // tutorial states future-proofing. We may have more data passing through
+  // the function in the future, and you may want that to stay intact.
+  // so this is a more grown-up way of doing things, which is cool.
+  // I can get down with that.
+  if (entries.size === 1) {
+    return state.remove('vote')
+                .remove('entries')
+                .set('winner', entries.first())
+  }
 
-    // The take function returns the first X amount of entries from a map:
-    // https://facebook.github.io/immutable-js/docs/#/Map/take
-    vote: Map({pair: entries.take(2)}),
+  else {
+    // Merge ensures that the entries map that is returned is efficiently
+    // updated with the changes that are happening here. This is quite cool.
+   return state.merge({
 
-    // the skip function returns the map, sans the first X amount of entries
-    // https://facebook.github.io/immutable-js/docs/#/Map/skip
-    entries: entries.skip(2)
-  });
+     // The take function returns the first X amount of entries from a map:
+     // https://facebook.github.io/immutable-js/docs/#/Map/take
+     vote: Map({pair: entries.take(2)}),
+
+     // the skip function returns the map, sans the first X amount of entries
+     // https://facebook.github.io/immutable-js/docs/#/Map/skip
+     entries: entries.skip(2)
+   });
+  }
 }
 
 // a function to update a single entry in a vote with a vote tally
