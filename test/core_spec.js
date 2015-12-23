@@ -91,5 +91,27 @@ describe('application logic', () => {
         })
       }))
     });
+
+    it('sends the winner back to the results for another vote later', () => {
+      const state = Map({
+        vote: Map({
+          pair: List.of('Trainspotting', '28 Days Later'),
+          tally: Map({
+            'Trainspotting': 5,
+            '28 Days Later': 4
+          }),
+        }),
+        entries: List.of('Sunshine', 'Millions', '127 Hours')
+      });
+
+      const nextState = next(state);
+
+      expect(nextState).to.equal(Map({
+        vote: Map({
+          pair: List.of('Sunshine', 'Millions'),
+        }),
+        entries: List.of('127 Hours', 'Trainspotting')
+      }));
+    });
   });
 })
