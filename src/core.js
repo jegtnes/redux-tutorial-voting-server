@@ -12,16 +12,21 @@ export function setEntries(state, entries) {
 }
 
 // a function to move two map entries to a separate current vote key
-// The take function returns the first X amount of entries from a map:
-// https://facebook.github.io/immutable-js/docs/#/Map/take
-// and the skip function returns the map, sans the first X amount of entries
-// https://facebook.github.io/immutable-js/docs/#/Map/skip
-// Merge ensures that the entries map that is returned is efficiently updated
-// with the changes that are happening here. This is quite cool. I like it.
 export function next(state) {
-  const entries = state.get('entries');
+  const entries =
+    state.get('entries')
+         .concat(getWinners(state.get('vote')));
+
+   // Merge ensures that the entries map that is returned is efficiently updated
+   // with the changes that are happening here. This is quite cool.
   return state.merge({
+
+    // The take function returns the first X amount of entries from a map:
+    // https://facebook.github.io/immutable-js/docs/#/Map/take
     vote: Map({pair: entries.take(2)}),
+
+    // the skip function returns the map, sans the first X amount of entries
+    // https://facebook.github.io/immutable-js/docs/#/Map/skip
     entries: entries.skip(2)
   });
 }
