@@ -1,5 +1,9 @@
 import {List, Map} from 'immutable';
 
+// Redux reducers need to have a meaningful initial application state.
+// As this is where the application's core logic is, we set it here.
+export const INITIAL_STATE = Map();
+
 function getWinners(vote) {
   // chuck the no-voting plebs out by returning an empty array to concatenate
   if (!vote) {

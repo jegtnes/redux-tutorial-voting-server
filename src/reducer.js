@@ -1,4 +1,4 @@
-import {setEntries, next, vote} from './core';
+import {setEntries, next, vote, INITIAL_STATE} from './core';
 
 // So there are two things going on here that are pretty new to me:
 // Actions, and reducers.
@@ -11,7 +11,7 @@ import {setEntries, next, vote} from './core';
 // If the action is unknown, we return the current state.
 // No harm done.
 
-export default function reducer(state, action) {
+export default function reducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case 'SET_ENTRIES':
       return setEntries(state, action.entries);
