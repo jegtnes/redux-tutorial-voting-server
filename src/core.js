@@ -95,9 +95,9 @@ export function next(state) {
 // the third parameter is what we're updating the value to
 // pretty fucking metal, though.
 // https://facebook.github.io/immutable-js/docs/#/Map/updateIn
-export function vote(state, entry) {
-  return state.updateIn(
-    ['vote', 'tally', entry],
+export function vote(voteState, entry) {
+  return voteState.updateIn(
+    ['tally', entry],
     0,
     tally => tally + 1
   );
