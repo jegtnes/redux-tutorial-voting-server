@@ -14,12 +14,14 @@
   },
   "keywords": [],
   "author": "Alex Jegtnes <alex@jegtnes.co.uk> (http://jegtnes.co.uk)",
-  "license": "None",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/jegtnes/redux-tutorial-voting-server/issues"
   },
   "babel": {
-    "presets": ["es2015"]
+    "presets": [
+      "es2015"
+    ]
   },
   "homepage": "https://github.com/jegtnes/redux-tutorial-voting-server#readme",
   "devDependencies": {
