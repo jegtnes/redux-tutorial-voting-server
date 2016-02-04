@@ -142,5 +142,17 @@ describe('application logic', () => {
         })
       }))
     });
+
+    it('disallows a vote for an entry that is not in the current pair', () => {
+      const state = Map({
+        pair: List.of('Trainspotting', '28 Days Later')
+      });
+
+      const nextState = vote(state, 'Sunshine');
+
+      expect(nextState).to.equal(Map({
+        pair: List.of('Trainspotting', '28 Days Later')
+      }));
+    });
   });
 })
